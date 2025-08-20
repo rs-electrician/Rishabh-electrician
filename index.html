@@ -421,34 +421,72 @@ function toggleMenu() {
 </section>
 
 <!-- ✅ FEEDBACK -->
+<!-- ⭐ Feedback Section -->
 <section id="feedback">
   <h2>⭐ Customer Feedback</h2>
-  <p style="text-align:center;">Please rate our service</p>
-  <div id="stars" style="text-align:center;">
-    <span onclick="rate(1)">★</span>
-    <span onclick="rate(2)">★</span>
-    <span onclick="rate(3)">★</span>
-    <span onclick="rate(4)">★</span>
-    <span onclick="rate(5)">★</span>
-  </div>
+  <p style="text-align:center;">Please rate our service and share your feedback</p>
+
+  <form action="https://formsubmit.co/rselectrician9283@gmail.com" method="POST" style="max-width:400px;margin:auto;text-align:center;">
+    
+    <!-- Hidden field so you know it's feedback -->
+    <input type="hidden" name="Feedback Type" value="Customer Rating">
+
+    <!-- ⭐ Star Rating -->
+    <div id="star-rating" style="margin:10px 0;">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    <input type="hidden" name="Rating" id="rating-value" required>
+
+    <!-- Feedback message -->
+    <textarea name="Message" placeholder="Write your feedback here..." required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px;"></textarea>
+    
+    <!-- Name + Phone (optional for contact) -->
+    <input type="text" name="Name" placeholder="Your Name" style="width:100%;padding:8px;margin:5px 0;border:1px solid #ccc;border-radius:5px;">
+    <input type="tel" name="Phone" placeholder="Your Phone" style="width:100%;padding:8px;margin:5px 0;border:1px solid #ccc;border-radius:5px;">
+
+    <button type="submit" style="background:#e74c3c;color:#fff;padding:10px 16px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">✨ Submit Feedback</button>
+  </form>
 </section>
 
-<script>
-  function rate(n) {
-    let stars = document.querySelectorAll('#stars span');
-    stars.forEach((star, i) => {
-      if (i < n) star.classList.add('active');
-      else star.classList.remove('active');
-    });
-    alert("Thanks for giving " + n + " star rating!");
+<style>
+  /* ⭐ Star Style */
+  #star-rating .star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc;
   }
+  #star-rating .star.selected {
+    color: gold;
+  }
+</style>
+
+<script>
+  // ⭐ Rating selection script
+  const stars = document.querySelectorAll("#star-rating .star");
+  const ratingValue = document.getElementById("rating-value");
+
+  stars.forEach(star => {
+    star.addEventListener("click", () => {
+      let value = star.getAttribute("data-value");
+      ratingValue.value = value;
+
+      // Highlight selected stars
+      stars.forEach(s => s.classList.remove("selected"));
+      for (let i = 0; i < value; i++) {
+        stars[i].classList.add("selected");
+      }
+    });
+  });
 </script>
 
-<!-- ✅ FOOTER -->
+<!-- 🌐 Footer -->
 <footer id="contact" style="background:#111;color:#fff;text-align:center;padding:20px;margin-top:30px;">
   <p>© 2025 RS Electrician Services | All Rights Reserved</p>
-  <p>📞 Contact: +91 6389293604 | 💬 WhatsApp: 6389293604</p>
+  <p>📞 Contact: <a href="tel:+916389293604" style="color:#25d366;text-decoration:none;">+91 6389293604</a> | 
+     💬 WhatsApp: <a href="https://wa.me/916389293604" target="_blank" style="color:#25d366;text-decoration:none;">Chat Now</a></p>
+  <p>📧 Email: <a href="mailto:rselectrician9283@gmail.com" style="color:#25d366;text-decoration:none;">rselectrician9283@gmail.com</a></p>
 </footer>
-
-</body>
-        </html>
